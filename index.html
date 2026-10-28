@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Usage Tracker BD</title>
+<meta name="description" content="Offline bilingual EN/Bangla tracker for mobile and broadband data packs in Bangladesh.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div>
+      <h1>Data Usage Tracker BD</h1>
+      <p class="tagline" data-i18n="tagline">Track your mobile / broadband data pack — know before it runs out.</p>
+    </div>
+    <button id="langBtn" class="btn outline" type="button">বাংলা</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" aria-labelledby="pack-h">
+    <h2 id="pack-h" data-i18n="packTitle">Your data pack</h2>
+    <form id="packForm" novalidate>
+      <div class="grid">
+        <label><span data-i18n="packName">Pack name</span>
+          <input id="packName" type="text" maxlength="80" data-i18n-ph="packNamePh" placeholder="e.g. Grameenphone 30 GB"></label>
+        <label><span data-i18n="allowance">Allowance</span>
+          <input id="packAllowance" type="number" min="0" step="any" inputmode="decimal" required></label>
+        <label><span data-i18n="unit">Unit</span>
+          <select id="packUnit"><option value="GB">GB</option><option value="MB">MB</option></select></label>
+        <label><span data-i18n="startDate">Start date</span>
+          <input id="packStart" type="date" required></label>
+        <label><span data-i18n="validity">Validity (days)</span>
+          <input id="packValidity" type="number" min="1" max="365" step="1" value="30" required></label>
+      </div>
+      <button class="btn primary" type="submit" data-i18n="savePack">Save pack</button>
+      <p id="packMsg" class="msg" role="status"></p>
+    </form>
+  </section>
+
+  <section class="card" aria-labelledby="dash-h">
+    <h2 id="dash-h" data-i18n="dashTitle">Dashboard</h2>
+    <div id="dashboard"></div>
+  </section>
+
+  <section class="card" aria-labelledby="chart-h">
+    <h2 id="chart-h" data-i18n="chartTitle">Last 30 days (MB per day)</h2>
+    <div id="chart"></div>
+  </section>
+
+  <section class="card" aria-labelledby="add-h">
+    <h2 id="add-h" data-i18n="addTitle">Log usage</h2>
+    <form id="entryForm" novalidate>
+      <div class="grid">
+        <label><span data-i18n="date">Date</span>
+          <input id="entryDate" type="date" required></label>
+        <label><span data-i18n="usedMB">Used (MB)</span>
+          <input id="entryMB" type="number" min="0" step="any" inputmode="decimal" placeholder="500" required></label>
+        <label><span data-i18n="note">Note (optional)</span>
+          <input id="entryNote" type="text" maxlength="100" placeholder="YouTube, video calls…"></label>
+      </div>
+      <button class="btn primary" type="submit" data-i18n="addBtn">Add entry</button>
+      <p id="entryMsg" class="msg" role="status"></p>
+    </form>
+  </section>
+
+  <section class="card" aria-labelledby="hist-h">
+    <h2 id="hist-h" data-i18n="historyTitle">History</h2>
+    <div id="history"></div>
+  </section>
+
+  <section class="card" aria-labelledby="data-h">
+    <h2 id="data-h" data-i18n="dataTitle">Data</h2>
+    <div class="row">
+      <button id="exportBtn" class="btn outline" type="button" data-i18n="exportBtn">Export JSON</button>
+      <label class="btn outline file-label" for="importFile" data-i18n="importBtn">Import JSON</label>
+      <input id="importFile" type="file" accept="application/json,.json" hidden>
+      <button id="clearBtn" class="btn danger" type="button" data-i18n="clearBtn">Erase all data</button>
+    </div>
+    <p id="dataMsg" class="msg" role="status"></p>
+  </section>
+
+  <footer><p data-i18n="footer">Offline personal tracker. Your data never leaves this device — everything is stored in this browser only. Usage figures are what you enter; they are not read from your operator.</p></footer>
+</main>
+
+<script src="js/logic.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
